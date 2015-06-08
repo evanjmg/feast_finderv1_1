@@ -1,0 +1,77 @@
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "colors";
+@import "users";
+
+@media only screen and (min-width: 600px) {
+    .mobile {
+        display: none !important;
+        visibility: hidden !important;
+    }
+    .desktop {
+    display:block;
+    }
+    .navbar-header {
+        display: block;
+    }
+    body {
+  padding-top: 100px; 
+}
+
+}
+.centering{
+float:none;
+margin:0 auto
+}
+
+@media only screen and (max-width: 600px) {
+     .mobile {
+        display: block !important;
+        visibility: visible !important;
+     }
+     .navbar-fixed-top.navbar-absolute {
+    position: fixed;
+    margin-top: 40px;background:#FFFFFF;
+  }
+  .navbar-absolute + div {
+    margin-top: 68px;
+} 
+     .navbar-header {
+        display: none;
+     }
+       body {
+  padding-top: 50px; 
+}
+.desktop {display:none !important;visibility: hidden !important;}
+
+}
+
+
+.mobile-nav-dropdown {
+  position: fixed;
+  z-index: 1030;
+  margin-bottom: 0;
+}
+
+.content {margin:30px;}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+.flash {
+  border-radius: 4px;
+  padding: 10px;
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+  box-shadow: #ffc 0 0 4px;
+  
+  &.notice {
+    background-color: #FFFFFF;
+  }
+
+  &.alert {
+    background-color: #FFA500;
+  }
+}

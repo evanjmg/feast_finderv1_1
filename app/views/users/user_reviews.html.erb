@@ -1,0 +1,15 @@
+<header>
+<h1> <%= link_to current_user.name, current_user %>'s Reviews</h1>
+</header>
+
+<% current_user.reviews.each do |r| %>
+<div style="margin:20px;">
+	 <%= link_to r.place.name,r.place %> <%= link_to "Edit", edit_place_review_path(r.place,r) %><%= link_to "Delete", place_review_path(r.place, r), method: :delete, data: {confirm: 'Are you sure?'} %>
+<div style="float:right;">
+	<%= time_ago_in_words(r.created_at) %> ago<p> Meal Size: <%= r.meal_size %></p></div>
+<p>
+	<%= "#{r.comment}" %>
+	<br/> Price Paid: <%= number_to_currency(r.price) %>
+</p>
+</div>
+<% end %>

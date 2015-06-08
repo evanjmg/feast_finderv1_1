@@ -1,0 +1,31 @@
+
+	 <% content_for(:title, "Feast Finder - Search") %>
+	<h2><%= pluralize(@places.size,'Restaurant') %></h2>
+	<% @places.each do |place| %>
+
+	<h3><%= link_to(place.name, place) %></h3>
+	<p><%= truncate(place.description, length:45) %></p>
+		<div>
+			<%= image_for(place) %>
+		</div>
+	<table class="table-responsive">
+		<tr><th>Average Price Per Meal</th>
+		<td><%= format_price(place) %></td>
+		<tr>
+			<th> Rating: </th>
+			<td><%= format_rating(place) %></td>
+		</tr>
+		<tr>
+			<th> Meal Size Rating: </th>
+			<td>
+				<%= format_meal_size(place) %>
+			</td>
+		</tr>
+		<tr>
+			<th> Location: </th>
+			<td>
+				<%= place.location %>
+			</td>
+		</tr>
+	</table>
+	<% end %>

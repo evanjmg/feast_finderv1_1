@@ -1,0 +1,18 @@
+ <% content_for(:title, "#{@place.name}-Reviews") %>
+    
+
+<header>
+<h1>Reviews for <%= link_to(@place.name, @place) %></h1>
+</header>
+
+<% @reviews.each do |r| %>
+<div style="margin:20px;">
+	by <%= link_to r.user.name,r.user %>
+<div style="float:right;">
+	<%= time_ago_in_words(r.created_at) %> ago<p> Meal Size: <%= r.meal_size %></p></div>
+<p>
+	<%= "#{r.comment}" %>
+	<br/> Price Paid: <%= number_to_currency(r.price) %>
+</p>
+</div>
+<% end %>

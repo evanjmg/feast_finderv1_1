@@ -1,0 +1,77 @@
+
+
+<nav class="navbar-fixed-top nav-default" role="navigation">
+
+                
+
+                <ul class="nav nav-tabs" style="background:#FFFFFF">
+                 <li class="desktop"> <div class="navbar-header" style="background:#FFFFFF" ><a href="#">
+<%= image_tag("placeholder.jpg", size:"40") %></a><a style="color:#FF6a3d;font-size:30px;font-family: 'Oleo Script', cursive;" href="#">Feast Finder</a></div> 
+<li><%= link_to "Home", root_url %></li>
+                 <li><% if current_user_admin? %><div><%= link_to new_place_path,id: "plus-icon" do %><span class="glyphicon glyphicon-plus btn btn-sm btn-default" style="margin:15px;"> </span></div> <% end %><% end %></li>
+                <li>
+                  <div class="dropdown">
+  <button class="dropdown-toggle inherit btn-link navbar-btn"  data-toggle="dropdown" style="margin-bottom:-15px;">
+    Filter
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+  <li role="presentation"><%= nav_link_to "All Restaurants", places_url %></li>
+    <li role="presentation"><%= nav_link_to "Lowest Price", filter_path(:lowest_price) %></li>
+    <li role="presentation"><%= nav_link_to "Highest Price", filter_path(:highest_price) %></li>
+     <li role="presentation"><%= nav_link_to "Meal Size", filter_path(:largest_meal) %></li>
+  </ul>
+</div></li>
+<li>
+  <div class="btn-group" role="group">
+  <form class="navbar-form navbar-left form-inline form-group-sm" role="search">
+  <div class="form-group form-group-sm">
+   <input type="text" class="form-control input-sm" placeholder="Search Restaurants" style="margin:5px;" >
+    <button type="submit" class="control-button btn btn-default btn-sm"style="margin:5px;">Submit</button></form></div>
+</li>
+
+<% if current_user %> 
+<li>
+                  <div class="dropdown">
+  <button class="dropdown-toggle inherit btn-link navbar-btn"  data-toggle="dropdown" style="margin-bottom:-15px;">
+    <span class="desktop">Account
+    <span class="caret"></span></span>
+    <span class="mobile"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><%= link_to "Your Profile", current_user %></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><%= link_to "Sign Out", session_path, method: :delete %></a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                <li></li>
+<% else %>
+<li> 
+   <%= link_to "Sign in", signin_path, role: "menuitem", tabindex: "-1" %></li><li>
+       <%= link_to "Sign up", signup_path,role: "menuitem", tabindex: "-1"   %>
+   </li>
+ 
+  <% end %>
+ 
+  </ul>
+</div></li>
+<li class="mobile" style="display:inline;">
+ 
+
+  <button type="button" class="navbar-toggle collapsed btn-nav btn-default btn-sm centering" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" style="position:absolute;top: 8px;right:8px;">
+
+        <span class="centering caret sr-only"></span></span>
+      </button>
+</li>
+        </ul>
+
+</nav>
+<!--<nav class = "navbar-fixed-top" style="top:45px;">-->
+       <div class="collapse navbar-collapse navbar-absolute mobile" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li>
+
+        </li>
+      </ul>
+        </div>
+

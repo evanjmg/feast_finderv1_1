@@ -1,0 +1,47 @@
+<%= form_for(@place) do |f| %>
+
+	<%= render 'shared/errors', object: @place %>
+
+	<p>
+		
+		<%= f.label :name %>
+
+		<%= f.text_field :name %>
+
+	</p>
+	<p> 
+		<%= f.label :description %><br/>
+
+		<%= f.text_area :description, cols:40, rows: 7 %>
+
+	</p>
+	<p>
+		<%= f.label :location %></br>
+
+		<%= f.text_field :location %>
+
+	</p>
+
+	<p>
+		<%= f.label :price %></br>
+		<%= f.number_field :price %>
+	</p>
+	<p><%= f.label :rating %><br/>
+		<%= f.number_field :rating%>
+	</p>
+		</p>
+		<p><%= f.label :image_file_name %><br/>
+		<%= f.text_field :image_file_name %>
+	</p>
+		</p>
+		
+	<p>
+		<%= f.collection_check_boxes(:cuisine_ids, Cuisine.all, :id, :name) %>
+	</p>
+	<p>
+	<%= f.submit %>
+	</p>
+	<% end %>
+	<p>
+<%= link_to "All Restaurants","/places" %>
+</p>

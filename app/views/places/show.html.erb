@@ -1,0 +1,81 @@
+<% content_for(:title, @place.name) %>
+		<%= image_for(@place) %>
+<article>
+	<header><h3><%= @place.name %></h3></header>
+	<p>
+		<% if current_user %>
+		<% if @current_check_in %>
+		<%= button_to "You've Checked in", place_check_in_path(@place, @current_check_in), method: :delete %>
+		<% else %>
+		<%= button_to "Check-in", place_check_ins_path(@place), class: "btn" %>
+		<% end %>
+		<% end %>
+	</p>
+	<p>
+		<%= @place.description %></p>
+	<table>
+		<tr><th>Average Price Per Meal</th>
+		<td><%= format_price(@place) %></td>
+		<tr>
+			<th> Rating: </th>
+			<td><%= format_rating(@place) %></td>
+		</tr>
+		<tr>
+			<th> Meal Size Rating: </th>
+			<td>
+				<%= format_meal_size(@place) %>
+			</td>
+		</tr>
+
+		<tr>
+			<th> Location: </th>
+			<td>
+				<%= @place.location %>
+			</td>
+		</tr>
+		<tr>
+
+		<tr>
+			<th> Cuisine: </th>
+			<td>
+				<ul><% @cuisines.each do |cuisine| %><li><%= cuisine.name %></li> <% end %></ul>
+			</td>
+		</tr>
+		<tr>
+			
+			<th> <%= pluralize(@visitors.size, 'Check in') %> </th>
+			<td>
+				<% if @visitors.any? %>
+				
+				<br/><ul>
+				<% @visitors.each do |user| %>
+				<li><%= link_to user.name, user %></li>
+				<% end %>
+			
+			</ul>
+				<% end %>
+			</td>
+		</tr>
+	</table>
+</article>
+<%= link_to "Write a Review", new_place_review_path(@place) %>
+ <%= link_to("Reviews", place_reviews_path(@place)) %>
+<%= link_to "All Restaurants","/places" %>
+<% if current_user_admin? %>
+<%= link_to "Edit",edit_place_path(@place) %>
+<%= link_to "Delete", place_path(@place), method: :delete, data: {confirm: 'Are you sure?'} %>
+<% end %>
+<% @place.reviews.each do |r| %>
+<div style="margin:20px;">
+	 by <%= link_to r.user.name,r.user %>
+	 <% if r.user == current_user %> | <%= link_to "Edit", edit_place_review_path(r.place,r.user) %> | <%= link_to "Delete", place_review_path(r.place, r.user), method: :delete, data: {confirm: 'Are you sure?'} %>
+	 <% else  %> 
+	 <% end %>
+<div style="float:right;">
+	<%= time_ago_in_words(r.created_at) %> ago<p> Meal Size: <%= r.meal_size %></p></div>
+<p>
+	<%= "#{r.comment}" %>
+	<br/> Price Paid: <%= number_to_currency(r.price) %>
+</p>
+</div>
+<% end %>
