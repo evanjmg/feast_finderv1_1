@@ -6,8 +6,10 @@
 
                 <ul class="nav nav-tabs" style="background:#FFFFFF">
                  <li class="desktop"> <div class="navbar-header" style="background:#FFFFFF" ><a href="#">
-<%= image_tag("placeholder.jpg", size:"40") %></a><a style="color:#FF6a3d;font-size:30px;font-family: 'Oleo Script', cursive;" href="#">Feast Finder</a></div> 
-<li><%= link_to "Home", root_url %></li>
+<%= image_tag("placeholder.jpg", size:"40") %></a><a style="color:#FF6a3d;font-size:30px;font-family: 'Oleo Script', cursive;" href="#">Feast Finder</a></div> </li>
+<li class="mobile" style="margin-top:-20px;"> <a href="#"><div>
+<%= image_tag("placeholder.jpg", size:"30") %></a><a style="color:#FF6a3d;font-size:25px;font-family: 'Oleo Script', cursive;" href="#">Feast Finder</a></div> 
+<li ><%= link_to "Home", root_url %></li>
                  <li><% if current_user_admin? %><div><%= link_to new_place_path,id: "plus-icon" do %><span class="glyphicon glyphicon-plus btn btn-sm btn-default" style="margin:15px;"> </span></div> <% end %><% end %></li>
                 <li>
                   <div class="dropdown">
@@ -45,8 +47,12 @@
     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
                 <li></li>
 <% else %>
-<li> 
-   <%= link_to "Sign in", signin_path, role: "menuitem", tabindex: "-1" %></li><li>
+<li class="desktop"> 
+   <%= link_to "Sign in", signin_path, role: "menuitem", tabindex: "-1" %></li><li class="desktop">
+       <%= link_to "Sign up", signup_path,role: "menuitem", tabindex: "-1"   %>
+   </li>
+   <li class="mobile" style="font-size: 15px;margin-top:-90px;">
+   <%= link_to "Sign in", signin_path, role: "menuitem", tabindex: "-1" %></li><li class="mobile" style="font-size: 15px;margin-top:-90px;margin-left:70px;">
        <%= link_to "Sign up", signup_path,role: "menuitem", tabindex: "-1"   %>
    </li>
  
@@ -65,13 +71,3 @@
         </ul>
 
 </nav>
-<!--<nav class = "navbar-fixed-top" style="top:45px;">-->
-       <div class="collapse navbar-collapse navbar-absolute mobile" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
-
-        </li>
-      </ul>
-        </div>
-
